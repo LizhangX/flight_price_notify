@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <h1>NotiFlight</h1>
+    RoundTrip
+    <div class="container">
+        <form action="" method="post">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <div class="row">
+                <div class="form-group col">
+                    <label for="Dport">Departure Airport: </label>
+                    <input type="text" class="form-control" id="Dport" name="flight[dport]">
+                </div>
+                <div class="form-group col">
+                    <label for="Tport">Arriving Airport: </label>
+                    <input type="text" class="form-control" id="Tport" name="flight[tport]">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="Ddate">Departure Date: </label>
+                    <input type="date" class="form-control" id="Ddate" name="flight[ddate]">
+                </div>
+                <div class="form-group col">
+                    <label for="Rdate">Return Date: </label>
+                    <input type="date" class="form-control" id="Rdate" name="flight[rdate]">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Email">Email: </label>
+                <input type="email" class="form-control" id="Email" name="flight[email]">
+            </div>
+            <button type="submit" class="btn btn-primary">Schedule Your Price Notification</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fport: MyString
+  tport: 
+  ddate: 2017-08-21
+  rdate: 2017-08-21
+  email: MyString
+
+two:
+  fport: MyString
+  tport: 
+  ddate: 2017-08-21
+  rdate: 2017-08-21
+  email: MyString
