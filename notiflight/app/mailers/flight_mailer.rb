@@ -1,0 +1,2 @@
+class FlightMailer < ApplicationMailer
+end
