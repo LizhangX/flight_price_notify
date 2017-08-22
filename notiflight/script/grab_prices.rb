@@ -19,16 +19,21 @@ flights.each do |flight|
     sleep(3)
     price = browser.all(".EIGTDNC-d-Ab").first.text
     price = Price.create(price: price, flight: flight)
-    puts price 
+    # puts price 
     prices = Price.all.where(flight: flight)
     price_origin = prices.first.price
     price_last = prices.last.price
+    FlightMailer.notiflight_email(flight).deliver_now
+    puts "sent email to #{flight.email}"
     puts price_origin
+    puts price_last
     if price_last < price_origin
         puts "yeah"
     else
-        puts "same"
+        puts "same or more"
     end
+    puts Time.now
+    puts "-------"
 end
 # browser.visit "https://www.google.com/flights/?f=0&gl=us#search;f=DFW,DAL;t=SFO;d=2017-09-08;r=2017-09-10"
 # sleep(2)

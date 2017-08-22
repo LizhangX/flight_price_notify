@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your price has changed, <%= @flight.email %></h1>
+    <p>Your price change from <%= @price_original %> to <%= @price_last %></p>
+    <p>
+        Follow this link: <%= @url %> to see the price.
+    </p>
+  </body>
+</html>
