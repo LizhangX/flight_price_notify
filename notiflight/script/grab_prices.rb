@@ -23,11 +23,11 @@ flights.each do |flight|
     prices = Price.all.where(flight: flight)
     price_origin = prices.first.price
     price_last = prices.last.price
-    FlightMailer.notiflight_email(flight).deliver_now
-    puts "sent email to #{flight.email}"
     puts price_origin
     puts price_last
     if price_last < price_origin
+        puts "sent email to #{flight.email}"
+        FlightMailer.notiflight_email(flight).deliver_now
         puts "yeah"
     else
         puts "same or more"
