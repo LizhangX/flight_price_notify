@@ -1,0 +1,90 @@
+<div class="container bg-light">
+    <h3 class="text-secondary">Welcome <strong><%= @user.name %></strong>!</h3>
+    <div class="row">
+        <div class="container col-md-8">
+        <h3 class="text-danger">RoundTrip</h3>
+            <form action="/flights" method="post">
+                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                <div class="row border">
+                    <div class="form-group col">
+                        <label for="Dport">Departure Airport: </label>
+                        <select class="form-control airports" name="flight[departureAirport" id="Dport">
+                            <option value="" disabled selected>Click and Type your departure airport</option>
+                            <% @airports.each do |airport| %>
+                              <option value="<%= airport.iata %>"><%= airport.iata %>/ <%= airport.name %></option>
+                            <% end %>
+                        </select>
+                    </div>
+                    <div class="form-group col">
+                        <label for="Aport">Arriving Airport: </label>
+                            <select class="form-control" name="flight[arrivingAirport" id="Aport">
+                            <option value="" diabled selected>Click and Type your arriving airport</option>
+                            <% @airports.each do |airport| %>
+                              <option value="<%= airport.iata %>"><%= airport.iata %>/ <%= airport.name %></option>
+                            <% end %>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col border">
+                        <label for="Ddate">Departure Date: </label>
+                        <input type="date" class="form-control" id="Ddate" name="flight[departureDate]">
+                        <%# <div class="form-row">
+                            <div class="form-group col-6">
+                                Range from: <input class="form-control" type="time" name="flight[departFromTime]" value="00:00:00"/>
+                            </div>
+                            <div class="form-group col-6">
+                                To:(optinoal) <input class="form-control" type="time" name="flight[departToTime]" value="23:59:00"/>
+                            </div>
+                        </div> %>
+                    </div>
+                    <div class="form-group col border">
+                        <label for="Rdate">Return Date: </label>
+                        <input type="date" class="form-control" id="Rdate" name="flight[returnDate]">
+                        <%# <div class="form-row">
+                            <div class="form-group col-6">
+                                Range from: <input class="form-control" type="time" name="flight[returnFromTime]" value="00:00:00"/>
+                            </div>
+                            <div class="form-group col-6">
+                                To:(optional) <input class="form-control" type="time" name="flight[returnToTime]" value="23:59:00"/>
+                            </div>
+                        </div> %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="Dprice">Desired Price: </label>
+                        <input type="text" class="form-control" id="Dprice" name="flight[lowerPrice]" value="$">
+                    </div>
+                    <div class="form-group col">
+                        <label for="Tprice">Upper Price Limit: </label>
+                        <input type="text" class="form-control" id="Tprice" name="flight[upperPrice]" value="$">
+                    </div>
+                    <%# <input type="range" name="time" id="" min="00:00:00" max="23:59:59"> %>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Schedule Your Price Notification</button>
+            </form>
+        </div>
+        <div class="col-md-4">
+        <h6>Directions:</h6>
+            <p>* Choose Your Airports and Dates to track the best price from Google Flight.</p>
+            <p>* You will recieve daily email of the trend of your tracked flights.</p>
+            <p>* Best of all, you will recieve email notification if the price hit your set price point(lower & upper).</p>
+        </div>
+    </div>    
+    <div class="container">
+        <% if flash[:notice] %>
+        <% flash[:notice].each do |error| %>
+            <p>***<%= error %>***</p>
+        <% end %>
+        <% end %>
+    </div>
+    <hr>
+    <div class="container">
+        <h2>List of your tracked flights</h2>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".airports").select2();
+</script>
