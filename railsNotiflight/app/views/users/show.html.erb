@@ -62,7 +62,7 @@
                     </div>
                     <%# <input type="range" name="time" id="" min="00:00:00" max="23:59:59"> %>
                 </div>
-
+                <input type="hidden" name="flight[tracking]" value="true">
                 <button type="submit" class="btn btn-primary">Schedule Your Price Notification</button>
             </form>
         </div>
@@ -73,7 +73,7 @@
             <p>* Best of all, you will recieve email notification if the price hit your set price point(lower & upper).</p>
         </div>
     </div>    
-    <div class="container">
+    <div class="container text-danger">
         <% if flash[:notice] %>
         <% flash[:notice].each do |error| %>
             <p>***<%= error %>***</p>
@@ -83,8 +83,9 @@
     <hr>
     <div class="container">
         <h2>List of your tracked flights</h2>
+        <%= line_chart User.group_by_day(:created_at).count %>
+        <% @flights.each do |flight| %>
+            <%= line_chart Price.group_by_minute(:created_at).sum(:price) %>
+        <% end %>
     </div>
 </div>
-<script type="text/javascript">
-    $(".airports").select2();
-</script>

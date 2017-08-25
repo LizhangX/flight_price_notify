@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
   resource :users, only: [:create, :show]
+  resource :flights, only: [:create]
 
   root to: "home#show"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

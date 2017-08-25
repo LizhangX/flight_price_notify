@@ -38,6 +38,8 @@ gem 'validates_timeliness', '~> 4.0'
 gem 'poltergeist'
 gem 'whenever', require: false
 gem 'omniauth-google-oauth2'
+gem "chartkick"
+gem 'groupdate'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

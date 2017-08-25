@@ -56,6 +56,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chartkick (2.2.4)
     chronic (0.10.2)
     cliver (0.3.2)
     coffee-rails (4.2.2)
@@ -73,6 +74,8 @@ GEM
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     hashie (3.5.6)
     hirb (0.7.3)
     i18n (0.8.6)
@@ -217,7 +220,9 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
   carrierwave
+  chartkick
   coffee-rails (~> 4.2)
+  groupdate
   hirb
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)

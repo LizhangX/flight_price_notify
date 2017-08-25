@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
+    has_many :flights, dependent: :destroy
 
     validates :name, :email, :image, presence: true
     validates :password, on: :create, length: { minimum: 8 }

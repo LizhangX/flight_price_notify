@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     def show
         @user = current_user
         @airports = Airport.all.order('iata')
+        @flights = @user.flights
     end
 
     private

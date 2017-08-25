@@ -8,7 +8,7 @@ class CreateFlights < ActiveRecord::Migration[5.1]
       t.string :lowerPrice
       t.string :upperPrice
       t.boolean :tracking
-
+      t.references :user, foreign_key: true
       t.timestamps
     end
   end
