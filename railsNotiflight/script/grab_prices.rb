@@ -18,23 +18,27 @@ flights.each do |flight|
     browser.visit "https://www.google.com/flights/?f=0&gl=us#search;f=#{flight.departureAirport};t=#{flight.arrivingAirport};d=#{flight.departureDate};r=#{flight.returnDate}"
     sleep(5)
     price = browser.all(".EIGTDNC-d-Ab").first.text
-    price = Price.create(price: price, flight: flight)
+    price = price.gsub(/\D/,'').to_i
+    price = Pricenumber.create(price: price, flight: flight)
     # puts price 
-    lowerPrice = flight.lowerPrice
-    upperPrice = flight.upperPrice
+    lowerPrice = flight.lowerPrice.gsub(/\D/,'').to_i
+    upperPrice = flight.upperPrice.gsub(/\D/,'').to_i
     puts price.price
     puts lowerPrice
     puts upperPrice
     if price.price < lowerPrice
         puts "current #{price.price} is lower than setpoint #{lowerPrice}"
-        puts "sent email to #{flight.user.email}"
+        puts "sending email to #{flight.user.email}"
         UserMailer.notiflight_email_lower(flight, price.price).deliver_now
     end
     if price.price > upperPrice
         puts "current #{price.price} is higher than #{upperPrice}"
-        puts "sent email to #{flight.user.email}"
+        puts "sending email to #{flight.user.email}"
         UserMailer.notiflight_email_upper(flight, price.price).deliver_now
     end
+
+    puts "sending trend email to #{flight.user.email}"
+    UserMailer.notiflight_email(flight, price.price).deliver_now
     
     # if upperPrice < lowerPrice
     #     puts "yeah"

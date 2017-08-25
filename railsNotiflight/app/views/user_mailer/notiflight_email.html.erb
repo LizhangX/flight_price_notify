@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Dear <%= flight.user.name %></p>
+    <p>Here is your daily price trend!</p>
+    <% @flights.each do |flight| %>
+        <p>From <%= flight.departureAirport %> to <%= flight.arrivingAirport %> Depart: <%= flight.departureDate %> Return: <%= flight.returnDate %></p>
+        <%= line_chart Pricenumber.where(flight: flight).group_by_hour(:created_at).minimum(:price) %>
+    <% end %>
+  </body>
+</html>

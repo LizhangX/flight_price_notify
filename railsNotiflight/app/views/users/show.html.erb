@@ -1,5 +1,4 @@
 <div class="container bg-light">
-    <h3 class="text-secondary">Welcome <strong><%= @user.name %></strong>!</h3>
     <div class="row">
         <div class="container col-md-8">
         <h3 class="text-danger">RoundTrip</h3>
@@ -82,10 +81,11 @@
     </div>
     <hr>
     <div class="container">
-        <h2>List of your tracked flights</h2>
-        <%= line_chart User.group_by_day(:created_at).count %>
+        <h2 class="text-primary">List of your tracked flights</h2>
         <% @flights.each do |flight| %>
-            <%= line_chart Price.group_by_minute(:created_at).sum(:price) %>
+            <p>From <%= flight.departureAirport %> to <%= flight.arrivingAirport %> Depart: <%= flight.departureDate %> Return: <%= flight.returnDate %></p>
+            <%= line_chart Pricenumber.where(flight: flight).group_by_minute(:created_at, series: false).minimum(:price) %>
         <% end %>
+        <hr>
     </div>
 </div>

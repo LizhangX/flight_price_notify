@@ -18,4 +18,11 @@ class UserMailer < ApplicationMailer
 
         mail(to: @flight.user.email, subject: "Your Flight's Price GOES UP!")
     end
+
+    def notiflight_email(flight, price)
+        @flight = flight
+        @url = "https://www.google.com/flights/?f=0&gl=us#search;f=#{flight.departureAirport};t=#{flight.arrivingAirport};d=#{flight.departureDate};r=#{flight.returnDate}"
+
+        mail(to: @flight.user.email, subject: "Your daily flights trend")
+    end
 end
