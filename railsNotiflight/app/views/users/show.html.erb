@@ -84,7 +84,7 @@
         <h2 class="text-primary">List of your tracked flights</h2>
         <% @flights.each do |flight| %>
             <p>From <%= flight.departureAirport %> to <%= flight.arrivingAirport %> Depart: <%= flight.departureDate %> Return: <%= flight.returnDate %></p>
-            <%= line_chart Pricenumber.where(flight: flight).group_by_minute(:created_at, series: false).minimum(:price) %>
+            <%= line_chart Pricenumber.where(flight: flight).group_by_hour(:created_at, series: false).average(:price) %>
         <% end %>
         <hr>
     </div>

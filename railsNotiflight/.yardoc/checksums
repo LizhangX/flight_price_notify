@@ -4,7 +4,7 @@ app/models/flight.rb fe695d6e8bb1729970970c8530adf30f034012d2
 app/models/airport.rb af45be3b66da472838f8ca79e3f21ef3dd034758
 app/models/pricenumber.rb 2f7a48cbec06fd4810c4e383681d90bab4ebb2c6
 app/helpers/home_helper.rb 06fe7c399d2e519deba66a60aae6492d8f880aa2
-app/mailers/user_mailer.rb 0d329baa420cab948e7ef2b4b6cdf8b1e9b52838
+app/mailers/user_mailer.rb 99c12fcb2535c379686b71ba6dd668ffb47a3916
 app/helpers/users_helper.rb 4957066bcb0fa49423c7ae0fd83bc3b9e28a5ec7
 app/jobs/application_job.rb 9a24c3e30cfb517943d8774df4695ba794bfd69d
 app/helpers/flights_helper.rb d882df8118d72940868df642c9ac76671d9e747f

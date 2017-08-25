@@ -31,15 +31,12 @@ flights.each do |flight|
         puts "sending email to #{flight.user.email}"
         UserMailer.notiflight_email_lower(flight, price.price).deliver_now
     end
+    # UserMailer.notiflight_email_lower(flight, price.price).deliver_now
     if price.price > upperPrice
         puts "current #{price.price} is higher than #{upperPrice}"
         puts "sending email to #{flight.user.email}"
         UserMailer.notiflight_email_upper(flight, price.price).deliver_now
     end
-
-    puts "sending trend email to #{flight.user.email}"
-    UserMailer.notiflight_email(flight, price.price).deliver_now
-    
     # if upperPrice < lowerPrice
     #     puts "yeah"
     # else
@@ -48,6 +45,14 @@ flights.each do |flight|
     puts Time.now
     puts "-------"
 end
+
+# User.all.each do |user|
+#     puts "sending trend email to #{user.email}"
+#     UserMailer.notiflight_email(user).deliver_now
+# end    
+puts "sending trend email to #{User.first.email}"
+UserMailer.notiflight_email(User.first).deliver_now
+
 # browser.visit "https://www.google.com/flights/?f=0&gl=us#search;f=DFW,DAL;t=SFO;d=2017-09-08;r=2017-09-10"
 # sleep(2)
 # price = browser.all(".EIGTDNC-d-Ab").first.text

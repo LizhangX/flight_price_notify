@@ -5,13 +5,9 @@
   </head>
   <body>
     <h1> Hurry! Your price went up! <%= @flight.user.name %></h1>
-    <p>Your price change from $<%= @upperPrice %> to $<%= @price %></p>
+    <p>Your price change from <%= @upperPrice %> to $<%= @price %></p>
     <p>
         Goto this link: <%= @url %> to see the price.
     </p>
-    <% @flights.each do |flight| %>
-        <p>From <%= flight.departureAirport %> to <%= flight.arrivingAirport %> Depart: <%= flight.departureDate %> Return: <%= flight.returnDate %></p>
-        <%= line_chart Pricenumber.where(flight: flight).group_by_hour(:created_at).minimum(:price) %>
-    <% end %>
   </body>
 </html>
