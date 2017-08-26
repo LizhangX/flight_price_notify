@@ -23,6 +23,6 @@ job_type :script, "'#{path}/script/:task' :output"
 job_type :ruby, "/usr/local/bin/ruby '#{path}/script/:task' :output"
 
 
-every 5.minutes do
+every 1.hours do
     ruby "grab_prices.rb"
 end

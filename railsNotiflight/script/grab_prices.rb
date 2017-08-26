@@ -50,8 +50,8 @@ end
 #     puts "sending trend email to #{user.email}"
 #     UserMailer.notiflight_email(user).deliver_now
 # end    
-puts "sending trend email to #{User.first.email}"
-UserMailer.notiflight_email(User.first).deliver_now
+# puts "sending trend email to #{User.first.email}"
+# UserMailer.notiflight_email(User.first).deliver_now
 
 # browser.visit "https://www.google.com/flights/?f=0&gl=us#search;f=DFW,DAL;t=SFO;d=2017-09-08;r=2017-09-10"
 # sleep(2)
