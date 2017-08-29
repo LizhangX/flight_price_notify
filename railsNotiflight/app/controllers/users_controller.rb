@@ -16,6 +16,15 @@ class UsersController < ApplicationController
         @flights = @user.flights
     end
 
+    def search
+        airports = Airport.where("name LIKE ? OR iata LIKE ?", "%#{ params[:query] }%", "%#{ params[:query] }%").limit(10)
+        @airports = airports.map{ |n| n.iata }
+        
+        p @airports
+        # @airports = ["1","2","3"]
+        render json: @airports
+    end
+
     private
         def user_params
             params.require(:user).permit(:name, :email, :password, :password_confirmation,:image)
