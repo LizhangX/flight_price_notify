@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     def show
         @user = current_user
-        @airports = Airport.all.order('iata')
+        @airports = Airport.all.map { |n| n.iata.to_s + " " + n.name.to_s }
         @flights = @user.flights
     end
 
