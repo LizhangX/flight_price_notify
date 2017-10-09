@@ -21,7 +21,13 @@ class User < ApplicationRecord
           user.image = auth.info.image
           user.oauth_token = auth.credentials.token
           user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-          user.save!
+          puts "inside user"
+          if user.valid?
+            user.save!
+            return user
+          else
+            return false
+          end
         end
     end
 end

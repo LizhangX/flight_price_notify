@@ -31,8 +31,13 @@ class SessionsController < ApplicationController
 
   def create
     user = User.from_omniauth(request.env["omniauth.auth"])
-    session[:user_id] = user.id
-    binding.pry
+    if user
+      session[:user_id] = user.id
+    else
+      flash[:errors] = ['The email is already sign up throught NotiFlight.']
+      return redirect_to root_path
+    end
+    # binding.pry
     return redirect_to users_path
   end
 
