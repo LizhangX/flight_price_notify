@@ -4,7 +4,7 @@ require_relative 'application'
 # Initialize the Rails application.
 Rails.application.initialize!
 
-RAILS_ENV = “production”
-RACK_ENV = “production”
-RAILS_LOG_TO_STDOUT = “enabled”
-RAILS_SERVE_STATIC_FILES = “enabled”
+ENV['RAILS_ENV'] = "production"
+ENV['RACK_ENV'] = "production"
+ENV['RAILS_LOG_TO_STDOUT'] = "enabled"
+ENV['RAILS_SERVE_STATIC_FILES'] = "enabled"
