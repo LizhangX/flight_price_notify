@@ -5,17 +5,17 @@
             <form action="/flights" method="post">
                 <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
                 <!-- <input type="hidden" name="airports" id="airports" value="<%= @airports %>"> -->
-                <div class="row border">
+                <div class="row">
                     <div class="form-group col">
                         <label for="tags">Departure Airport: </label>
                         <input class="form-control tags" id="tags" name="flight[departureAirport]">
                     </div>
                     <div class="form-group col">
                         <label for="tags">Arriving Airport: </label>
-                        <input class="form-control tags" name="flight[departureAirport]">
+                        <input class="form-control tags" name="flight[arrivingAirport]">
                     </div>
                 </div>
-                <div class="row border">
+                <div class="row">
                     <div class="form-group col">
                         <label for="Ddate">Departure Date: </label>
                         <input type="date" class="form-control" id="Ddate" name="flight[departureDate]">
@@ -57,6 +57,7 @@
             </form>
         </div>
         <div class="col-md-4">
+        <p></p>
         <h6>Directions:</h6>
             <p>* Choose Your Airports and Dates to track the best price from Google Flight.</p>
             <p>* You will recieve daily email of the trend of your tracked flights.</p>
@@ -65,19 +66,33 @@
     </div>    
     <div class="container text-danger">
         <% if flash[:notice] %>
-        <% flash[:notice].each do |error| %>
-            <p>***<%= error %>***</p>
-        <% end %>
+            <% flash[:notice].each do |error| %>
+                <p>***<%= error %>***</p>
+            <% end %>
         <% end %>
     </div>
     <hr>
     <div class="container">
         <h2 class="text-primary">List of your tracked flights</h2>
-        <% @flights.each do |flight| %>
+        <hr>
+        <% @flights.each_with_index do |flight, idx| %>
+        <div>
+            <h3 class="text-primary">No.<%= idx + 1 %></h3>
             <p>From <%= flight.departureAirport %> to <%= flight.arrivingAirport %> Depart: <%= flight.departureDate %> Return: <%= flight.returnDate %></p>
             <%= line_chart Pricenumber.where(flight: flight).group_by_hour(:created_at, series: false).average(:price) %>
-        <% end %>
+            <form action="/flights/track" method="post">
+                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                <input type="hidden" name="id" value="<%= flight.id %>"></input>
+                <% if flight.tracking %>                    
+                    <button type="submit" class="btn btn-danger">Unsubscribe from this flight</button>
+                <% else %>
+                    <button type="submit" class="btn btn-primary">Subscribe this flight</button>                        
+                <% end %>
+                <a href="/flights/<%= flight.id %>" data-method="delete" class="btn btn-secondary">Delete this flight from my List</a>
+            </form>
+        </div>
         <hr>
+        <% end %>
     </div>
 </div>
 <script>    

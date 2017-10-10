@@ -15,6 +15,9 @@ browser = Capybara.current_session
 
 flights = Flight.all
 flights.each do |flight|
+    if flight.tracking == false
+        next
+    end
     browser.visit "https://www.google.com/flights/?f=0&gl=us#search;f=#{flight.departureAirport};t=#{flight.arrivingAirport};d=#{flight.departureDate};r=#{flight.returnDate}"
     sleep(5)
     price = browser.all(".EIGTDNC-d-Ab").first.text

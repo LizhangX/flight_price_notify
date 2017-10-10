@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+    skip_before_action :require_login, only: [:create]
+    before_action :auth, except: [:create, :search]
     def create
         user = User.create(user_params)
         if user.valid?
           session[:user_id] = user.id
-          return redirect_to users_path
+          return redirect_to user_path(user.id)
         else
           flash[:errors] = user.errors.full_messages
           return redirect_to root_path
