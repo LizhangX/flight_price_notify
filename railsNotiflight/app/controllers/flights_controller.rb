@@ -17,7 +17,7 @@ class FlightsController < ApplicationController
         # puts 'before', flight.to_s
         flight.tracking = !flight.tracking
         # puts 'after', flight.to_s
-        # puts flight.save
+        flight.save
         # puts flight.errors.full_messages
         return redirect_to user_path(flight.user.id)
     end
